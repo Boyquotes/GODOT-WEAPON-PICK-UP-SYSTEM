@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://debdmdiu62kt5"]
+
+[ext_resource type="PackedScene" uid="uid://bj37qr2dgqd8u" path="res://PLAYER AND MAIN/fps.tscn" id="1_dq1d4"]
+[ext_resource type="PackedScene" uid="uid://6khxbcgkhm8i" path="res://WEAPON_PICKUPS/WEAPON 2.tscn" id="2_my23g"]
+[ext_resource type="PackedScene" uid="uid://c43bmn6v3u5bk" path="res://WEAPON_PICKUPS/WEAPON 1.tscn" id="3_7irj5"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wlwkn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6xfm"]
+albedo_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_imv7e"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l8lsv"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78ot7"]
+size = Vector3(5, 1, 5)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(22, 0, 0, 0, 22, 0, 0, 0, 22, 0, 0, 0)
+mesh = SubResource("PlaneMesh_wlwkn")
+surface_material_override/0 = SubResource("StandardMaterial3D_v6xfm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(22, 0, 0, 0, 22, 0, 0, 0, 22, 0, -0.23415, 0)
+shape = SubResource("ConvexPolygonShape3D_imv7e")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96698, 0)
+mesh = SubResource("BoxMesh_l8lsv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96698, 0)
+shape = SubResource("BoxShape3D_78ot7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.30212, 0.95327, 0, -0.95327, -0.30212, 0, 6.37945, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_dq1d4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.47653, 1.47769, -3.26547)
+
+[node name="WEAPON 2" parent="." instance=ExtResource("2_my23g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70286, 0.833496, -9.99501)
+
+[node name="WEAPON 1" parent="." instance=ExtResource("3_7irj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.69385, 0.305886, -10.8253)
